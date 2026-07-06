@@ -1,4 +1,4 @@
-# Aprendizaje reforzado aplicado al balanceo de sistemas público de bicicletas
+# Aprendizaje reforzado aplicado al balanceo de sistemas públicos de bicicletas
 
 **Tesis de posgrado - Maestría en Ciencia de Datos**
 

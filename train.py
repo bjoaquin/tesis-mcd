@@ -61,9 +61,14 @@ def train(env, agent, params=None, N=10**4, verbose=True):
 
     # Imprimir resultados
     if verbose:
-        prop_insatisfechos = 100 * np.array(metricas['insatisfechos']) / np.array(metricas['n_viajes'])
-        prop_prolongados   = 100 * np.array(metricas['prolongados']) / np.array(metricas['n_viajes'])
-        prop_desbalanceo   = 100 * np.array(metricas['t_desbalanceo']) / (env.T * env.n_estaciones)
+        n_viajes      = np.array(metricas['n_viajes'])
+        insatisfechos = np.array(metricas['insatisfechos'])
+        prolongados   = np.array(metricas['prolongados'])
+        t_desbalanceo = np.array(metricas['t_desbalanceo'])
+
+        prop_insatisfechos = 100 * insatisfechos / (insatisfechos + n_viajes)
+        prop_prolongados   = 100 * prolongados / n_viajes
+        prop_desbalanceo   = 100 * t_desbalanceo / (env.T * env.n_estaciones)
 
         def estadisticas_texto(lista_metricas):
             return f"{np.mean(lista_metricas[-1000:]):.1f} ± {np.std(lista_metricas[-1000:]):.1f}"
@@ -128,9 +133,14 @@ def test(env, qtable, N=10**4, verbose=True):
 
     # Imprimir resultados
     if verbose:
-        prop_insatisfechos = 100 * np.array(metricas['insatisfechos']) / np.array(metricas['n_viajes'])
-        prop_prolongados   = 100 * np.array(metricas['prolongados']) / np.array(metricas['n_viajes'])
-        prop_desbalanceo   = 100 * np.array(metricas['t_desbalanceo']) / (env.T * env.n_estaciones)
+        n_viajes      = np.array(metricas['n_viajes'])
+        insatisfechos = np.array(metricas['insatisfechos'])
+        prolongados   = np.array(metricas['prolongados'])
+        t_desbalanceo = np.array(metricas['t_desbalanceo'])
+
+        prop_insatisfechos = 100 * insatisfechos / (insatisfechos + n_viajes)
+        prop_prolongados   = 100 * prolongados / n_viajes
+        prop_desbalanceo   = 100 * t_desbalanceo / (env.T * env.n_estaciones)
 
         def estadisticas_texto(lista_metricas):
             return f"{np.mean(lista_metricas[-1000:]):.1f} ± {np.std(lista_metricas[-1000:]):.1f}"
